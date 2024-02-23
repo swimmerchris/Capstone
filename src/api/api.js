@@ -69,11 +69,42 @@ export const api = createApi({
                 method: "PUT",
                 body
             })
+        }),
+        getAllCarts: builder.query({
+            query: () => ({
+                url: "/carts"
+            })
+        }),
+        getCartById: builder.query({
+            query: (id) => ({
+                url: `/carts/${id}`
+            })
+        }),
+        getCartByUser: builder.query({
+            query: (userId) => ({
+                url: `/carts/user/${userId}`
+            })
+        }),
+        addNewCart: builder.mutation({
+            query: (body) => ({
+                url: "/carts",
+                method: "POST",
+                body
+            })
+        }),
+        updateCart: builder.mutation({
+            query: ({ body, id }) => ({
+                url: `/carts/${id}`,
+                method: "PUT",
+                body
+            })
+        }),
+        deleteCart: builder.mutation({
+            query: (id) => ({
+                url: `/carts/${id}`,
+                method: "DELETE"
+            })
         })
-
-
-
-
     }),
 });
 
@@ -81,5 +112,17 @@ export const {
     useRegisterMutation,
     useLoginMutation,
     useGetUserQuery,
-    useGetProductsByIdQuery
+    useGetAllProductsQuery,
+    useGetProductsByIdQuery,
+    useGetAllCategoriesQuery,
+    useGetProductsByCategoryQuery,
+    useLimitProductsBySelectionQuery,
+    useSortProductsBySelectionQuery,
+    useUpdateProductByIdMutation,
+    useGetAllCartsQuery,
+    useGetCartByIdQuery,
+    useGetCartByUserQuery,
+    useAddNewCartMutation,
+    useUpdateCartMutation,
+    useDeleteCartMutation
 } = api;
