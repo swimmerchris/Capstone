@@ -1,12 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { build } from "vite";
 
 export const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
         baseUrl: "https://fakestoreapi.com/"
     }),
-    tagTypes: ["User", "Product", "Cart"],
+    tagTypes: ["User", "Product", "Category", "Cart"],
     endpoints: (builder) => ({
         register: builder.mutation({
             query: (body) => ({
@@ -14,7 +13,7 @@ export const api = createApi({
                 method: "POST",
                 body,
             }),
-            providesTags: ["User"],
+            // providesTags: ["User"],
         }),
         login: builder.mutation({
             query: (body) => ({
@@ -22,7 +21,7 @@ export const api = createApi({
                 method: "POST",
                 body,
             }),
-            providesTags: ["User"],
+            // providesTags: ["User"],
         }),
         getUser: builder.query({
             query: (token) => ({
@@ -30,12 +29,14 @@ export const api = createApi({
                 headers: {
                     authorization: `Bearer ${token}`,
                 }
-            })
+            }),
+            providesTags: ["User"]
         }),
         getAllProducts: builder.query({
             query: () => ({
                 url: "/products",
-            })
+            }),
+            providesTags: ["Product"]
         }),
         getProductsById: builder.query({
             query: ({ id }) => ({
@@ -46,64 +47,75 @@ export const api = createApi({
         getAllCategories: builder.query({
             query: () => ({
                 url: `/products/categories`
-            })
+            }),
+            providesTags: ["Category"]
         }),
         getProductsByCategory: builder.query({
             query: (category) => ({
                 url: `/products/category/${category}`
-            })
+            }),
+            providesTags: ["Category"]
         }),
         limitProductsBySelection: builder.query({
             query: (limitAmount) => ({
                 url: `/products?limit=${limitAmount}`
-            })
+            }),
+            providesTags: ["Product"],
         }),
-        sortProductsBySelection: build.query({
+        sortProductsBySelection: builder.query({
             query: (sortSelection) => ({
                 url: `/products?sort=${sortSelection}`
-            })
+            }),
+            providesTags: ["Product"],
         }),
         updateProductById: builder.mutation({
             query: (id) => ({
                 url: `/products/${id}`,
                 method: "PUT",
                 body
-            })
+            }),
+            invalidatesTags: ["Product"],
         }),
         getAllCarts: builder.query({
             query: () => ({
                 url: "/carts"
-            })
+            }),
+            providesTags: ["Cart"],
         }),
         getCartById: builder.query({
             query: (id) => ({
                 url: `/carts/${id}`
-            })
+            }),
+            providesTags: ["Cart"],
         }),
         getCartByUser: builder.query({
             query: (userId) => ({
                 url: `/carts/user/${userId}`
-            })
+            }),
+            providesTags: ["Cart"],
         }),
         addNewCart: builder.mutation({
             query: (body) => ({
                 url: "/carts",
                 method: "POST",
                 body
-            })
+            }),
+            invalidatesTags: ["Cart"]
         }),
         updateCart: builder.mutation({
             query: ({ body, id }) => ({
                 url: `/carts/${id}`,
                 method: "PUT",
                 body
-            })
+            }),
+            invalidatesTags: ["Cart"]
         }),
         deleteCart: builder.mutation({
             query: (id) => ({
                 url: `/carts/${id}`,
                 method: "DELETE"
-            })
+            }),
+            invalidatesTags: ["Cart"]
         })
     }),
 });
