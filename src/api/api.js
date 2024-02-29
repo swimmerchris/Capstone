@@ -13,7 +13,7 @@ export const api = createApi({
                 method: "POST",
                 body,
             }),
-            // providesTags: ["User"],
+            providesTags: ["User"],
         }),
         login: builder.mutation({
             query: (body) => ({
@@ -21,7 +21,7 @@ export const api = createApi({
                 method: "POST",
                 body,
             }),
-            // providesTags: ["User"],
+            providesTags: ["User"],
         }),
         getUser: builder.query({
             query: (token) => ({
@@ -39,7 +39,7 @@ export const api = createApi({
             providesTags: ["Product"]
         }),
         getProductsById: builder.query({
-            query: ({ id }) => ({
+            query: (id) => ({
                 url: `/products/${id}`
             }),
             providesTags: ["Product"],

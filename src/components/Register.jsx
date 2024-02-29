@@ -43,8 +43,8 @@ export default function Register({ setToken }) {
         setToken(response.data.token);
         setUsernameError(null);
         setPasswordError(null);
-        if (response.data.message === "Registration successful") {
-          setSuccess(response.data.message);
+        if (response) {
+          setSuccess(response);
         }
       } catch (error) {
         setError(error);
@@ -55,7 +55,7 @@ export default function Register({ setToken }) {
 
   useEffect(() => {
     if (success) {
-      toast.success("Registration successful! Welcome to BookBuddy");
+      toast.success("Registration successful! Welcome to eHub");
       navigate("/login");
     }
   }, [success]);

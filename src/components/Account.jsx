@@ -21,7 +21,7 @@ export default function Account({ token, user }) {
           <h2> User Account Info:</h2>
           <div className="user-info">
             <p>Frist Name: {userInfo[0].name.firstname} </p>
-            <p>Last Name: {userInfo[0].name.firstname} </p>
+            <p>Last Name: {userInfo[0].name.lastname} </p>
             <p>Email Address: {userInfo[0].email}</p>
           </div>
         </div>

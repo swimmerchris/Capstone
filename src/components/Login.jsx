@@ -23,11 +23,11 @@ export default function Login({ token, setToken, setUser }) {
       };
       //   jsonBody = JSON.stringify(body);
       const result = await loginUser(body);
-      console.log(result);
       setToken(result.data.token);
+      console.log(result);
       setUser(username);
-      if (result.data.message === "Login successful!") {
-        setSuccess(result.data.message);
+      if (result.data.token) {
+        setSuccess("Login In Successful");
       }
     } catch (error) {
       console.log(error);

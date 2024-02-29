@@ -22,6 +22,7 @@ function NavBar({ token, setToken }) {
   return (
     <nav>
       <NavLink to="/">Home</NavLink>
+      <NavLink to="/products">Products</NavLink>
       <NavLink to="/register">Register</NavLink>
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/cart">Cart</NavLink>
