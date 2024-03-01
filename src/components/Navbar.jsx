@@ -14,6 +14,7 @@ function NavBar({ token, setToken }) {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/products">Products</NavLink>
         <NavLink to="/account">Account</NavLink>
+        <NavLink to="/cart">Cart</NavLink>
         <a onClick={logoutUser}>Logout</a>
       </nav>
     );

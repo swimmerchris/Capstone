@@ -1,6 +1,6 @@
 import { useGetUserQuery } from "../api/api";
 
-export default function Account({ token, user }) {
+export default function Account({ token, user, setUserId }) {
   const { data = {}, error, isLoading } = useGetUserQuery(token);
 
   if (isLoading) {

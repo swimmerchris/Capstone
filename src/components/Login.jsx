@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
-import { useLoginMutation } from "../api/api";
+import { useLoginMutation, useGetUserQuery } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../index.css";
 
-export default function Login({ token, setToken, setUser }) {
+export default function Login({ token, setToken, setUser, setUserId }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(null);
+  const [error1, setError] = useState(null);
   const [displayPasword, setDisplayPassword] = useState(false);
   const [loginUser] = useLoginMutation();
+  const { data = {}, error, isLoading } = useGetUserQuery();
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
@@ -27,11 +28,16 @@ export default function Login({ token, setToken, setUser }) {
       console.log(result);
       setUser(username);
       if (result.data.token) {
+        const userInfo = data.filter((currentUser) => {
+          return currentUser.username === username;
+        });
+        console.log(userInfo[0].id);
+        setUserId(userInfo[0].id);
         setSuccess("Login In Successful");
       }
-    } catch (error) {
-      console.log(error);
-      setError(error);
+    } catch (error1) {
+      console.log(error1);
+      setError(error1);
       toast.error("Login Failed");
     }
   }

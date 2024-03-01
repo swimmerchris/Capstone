@@ -40,7 +40,8 @@ export const api = createApi({
         }),
         getProductsById: builder.query({
             query: (id) => ({
-                url: `/products/${id}`
+                url: `/products/${id}`,
+                method: "GET"
             }),
             providesTags: ["Product"],
         }),
@@ -92,7 +93,7 @@ export const api = createApi({
             query: (userId) => ({
                 url: `/carts/user/${userId}`
             }),
-            providesTags: ["Cart"],
+            // providesTags: ["Cart"],
         }),
         addNewCart: builder.mutation({
             query: (body) => ({
