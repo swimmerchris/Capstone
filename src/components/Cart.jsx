@@ -14,13 +14,17 @@ import {
 } from "../api/api";
 
 export default function Cart({ user, token, userId }) {
-  const [cartArray, setCartArray] = useState();
+  const [multiCart, setMultiCart] = useState([]);
   const { data: data = {}, error, isLoading } = useGetCartByUserQuery(userId);
   const {
     data: productsData = {},
     error2,
     isLoading2,
   } = useGetAllProductsQuery();
+  useEffect(() => {
+    const carts = localStorage.getItem("carts");
+    setMultiCart(carts);
+  }, []);
   //   need to make the above a function that's imported
 
   if (isLoading) {
@@ -31,20 +35,28 @@ export default function Cart({ user, token, userId }) {
     return <h3>Something went wrong!</h3>;
   }
 
-  if (data) {
-    data.forEach((cart) => {
+  if (data && multiCart.length === 0) {
+    const newArray = data.map((cart) => {
       console.log("New cart");
       const products = cart.products;
       const cartDetails = products.map((product) => {
         const prodId = product.productId;
-        console.log(prodId);
+        const prodQty = product.quantity;
+        console.log(product);
         const productDetails = productsData.find((p) => p.id === prodId);
-        return productDetails;
+        const newProdObj = { ...productDetails, quantity: prodQty };
+        return newProdObj;
       });
-      console.log(cartDetails);
+      const newCartObj = { ...cart, products: cartDetails };
+      return newCartObj;
     });
+    // console.log(multiCart);
+    console.log(newArray);
     console.log(data);
+    setMultiCart(newArray);
+    localStorage.setItem("carts", JSON.stringify(newArray));
   }
+
   return (
     <div>Hello Welcome to the Cart</div>
     // <div>

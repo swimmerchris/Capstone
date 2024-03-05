@@ -56,10 +56,10 @@ export default function Login({ token, setToken, setUser, setUserId }) {
         {success && !error && <p id="successMessage">{success}</p>}
         {/* {error && <p id="error">Unable to find User, Please try again!</p>} */}
         <form onSubmit={handleSubmit}>
-          <label id="email">
-            Email:{" "}
+          <label id="username">
+            Username:{" "}
             <input
-              placeholder="Enter Email"
+              placeholder="Enter Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
