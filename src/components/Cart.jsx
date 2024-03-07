@@ -21,11 +21,15 @@ export default function Cart({ user, token, userId }) {
     error2,
     isLoading2,
   } = useGetAllProductsQuery();
+
   useEffect(() => {
-    const carts = localStorage.getItem("carts");
+    const carts = JSON.parse(localStorage.getItem("carts"));
     setMultiCart(carts);
   }, []);
   //   need to make the above a function that's imported
+  if (user === null) {
+    return <p>Please Log in</p>;
+  }
 
   if (isLoading) {
     return <p>Loading....</p>;
@@ -58,26 +62,29 @@ export default function Cart({ user, token, userId }) {
   }
 
   return (
-    <div>Hello Welcome to the Cart</div>
-    // <div>
-    //   {data.map((product) => (
-    //     <div key={product.id} className="product-card">
-    //       <div className="product-card-container">
-    //         <h2> {product.title} </h2>
-    //         <img
-    //           src={product.image}
-    //           alt={product.title}
-    //           className="product-image-card"
-    //         />
-    //         <button
-    //           onClick={() => navigate(`/products/${product.id}`)}
-    //           className="product-button"
-    //         >
-    //           <span>Product Details </span>
-    //         </button>
-    //       </div>
-    //     </div>
-    //   ))}
-    // </div>
+    <div>
+      <h2>Hello Welcome to the Cart</h2>
+      {multiCart.map((currentCart) =>
+        currentCart.products.map((product) => (
+          <div key={product.id} className="product-card">
+            <div className="product-card-container">
+              <h3> {product.title} </h3>
+              <img
+                src={product.image}
+                alt={product.title}
+                className="product-image-card"
+              />
+              <p>QTY: {product.quantity}</p>
+              <button
+                onClick={() => navigate(`/products/${product.id}`)}
+                className="product-button"
+              >
+                <span>Product Details </span>
+              </button>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
   );
 }

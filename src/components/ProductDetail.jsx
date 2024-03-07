@@ -8,7 +8,6 @@ export default function ProductDetail() {
   const navigate = useNavigate();
   const { data = {}, error, isLoading } = useGetProductsByIdQuery(id);
 
-  console.log(data);
   return (
     <div key={data.id} className="data-details-container">
       <div className="data-image-container">
