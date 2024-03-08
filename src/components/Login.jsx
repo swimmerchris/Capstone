@@ -1,11 +1,25 @@
 import { useState, useEffect } from "react";
-import { useLoginMutation, useGetUserQuery } from "../api/api";
+import {
+  useLoginMutation,
+  useGetUserQuery,
+  useGetCartByUserQuery,
+  useGetAllProductsQuery,
+} from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../index.css";
 
-export default function Login({ token, setToken, setUser, setUserId }) {
+export default function Login({
+  token,
+  setToken,
+  setUser,
+  setUserId,
+  user,
+  userId,
+  multiCart,
+  setMultiCart,
+}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
@@ -13,6 +27,16 @@ export default function Login({ token, setToken, setUser, setUserId }) {
   const [displayPasword, setDisplayPassword] = useState(false);
   const [loginUser] = useLoginMutation();
   const { data = {}, error, isLoading } = useGetUserQuery();
+  const {
+    data: cartData = {},
+    error3,
+    isLoading3,
+  } = useGetCartByUserQuery(userId);
+  const {
+    data: productsData = {},
+    error2,
+    isLoading2,
+  } = useGetAllProductsQuery();
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
@@ -22,7 +46,6 @@ export default function Login({ token, setToken, setUser, setUserId }) {
         username: username,
         password: password,
       };
-      //   jsonBody = JSON.stringify(body);
       const result = await loginUser(body);
       setToken(result.data.token);
       console.log(result);
@@ -44,6 +67,62 @@ export default function Login({ token, setToken, setUser, setUserId }) {
 
   useEffect(() => {
     if (success) {
+      if (user === null) {
+        return <p>Please Log in</p>;
+      }
+
+      if (isLoading3) {
+        return <p>Loading....</p>;
+      }
+
+      if (error3) {
+        return <h3>Something went wrong!</h3>;
+      }
+
+      if (cartData && multiCart.length === 0) {
+        const newArray = cartData.map((cart) => {
+          console.log("New cart");
+          const cartProducts = cart.products;
+          const cartDetails = cartProducts.map((product) => {
+            const prodId = product.productId;
+            const prodQty = product.quantity;
+            console.log(product);
+            const productDetails = productsData.find((p) => p.id === prodId);
+            const newProdObj = { ...productDetails, quantity: prodQty };
+            return newProdObj;
+          });
+          const newCartObj = { ...cart, products: cartDetails };
+          return newCartObj;
+        });
+        // console.log(multiCart);
+        console.log(newArray);
+
+        const singleCart = newArray.shift();
+        console.log(singleCart);
+        const combinedCart = newArray.map((cart) => {
+          const extraCartProducts = cart.products;
+          extraCartProducts.map((product) => {
+            const foundProduct = singleCart.products.find((o, i) => {
+              if (o.id === product.id) {
+                console.log(singleCart.products[i]);
+                const newQuantity = o.quantity + product.quantity;
+                singleCart.products[i] = { ...o, quantity: newQuantity };
+                return true;
+              }
+            });
+            if (!foundProduct) {
+              singleCart.products.push(product);
+            }
+          });
+        });
+
+        console.log(singleCart);
+
+        localStorage.setItem("carts", JSON.stringify(singleCart));
+        const localCart = JSON.parse(localStorage.getItem("carts"));
+        console.log(localCart);
+        setMultiCart([localCart]);
+      }
       toast.success("Login successful");
       navigate("/products");
     }

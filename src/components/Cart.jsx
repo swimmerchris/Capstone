@@ -13,81 +13,95 @@ import {
   useGetAllProductsQuery,
 } from "../api/api";
 
-export default function Cart({ user, token, userId }) {
-  const [multiCart, setMultiCart] = useState([]);
-  const { data: data = {}, error, isLoading } = useGetCartByUserQuery(userId);
-  const {
-    data: productsData = {},
-    error2,
-    isLoading2,
-  } = useGetAllProductsQuery();
+export default function Cart({ multiCart }) {
+  //   const [multiCart, setMultiCart] = useState([]);
+  //   const { data: cartData = {}, error, isLoading } = useGetCartByUserQuery(userId);
+  //   const {
+  //     data: productsData = {},
+  //     error2,
+  //     isLoading2,
+  //   } = useGetAllProductsQuery();
 
-  useEffect(() => {
-    const carts = JSON.parse(localStorage.getItem("carts"));
-    setMultiCart(carts);
-  }, []);
-  //   need to make the above a function that's imported
-  if (user === null) {
-    return <p>Please Log in</p>;
-  }
+  //   if (user === null) {
+  //     return <p>Please Log in</p>;
+  //   }
 
-  if (isLoading) {
-    return <p>Loading....</p>;
-  }
+  //   if (isLoading) {
+  //     return <p>Loading....</p>;
+  //   }
 
-  if (error) {
-    return <h3>Something went wrong!</h3>;
-  }
+  //   if (error) {
+  //     return <h3>Something went wrong!</h3>;
+  //   }
 
-  if (data && multiCart.length === 0) {
-    const newArray = data.map((cart) => {
-      console.log("New cart");
-      const products = cart.products;
-      const cartDetails = products.map((product) => {
-        const prodId = product.productId;
-        const prodQty = product.quantity;
-        console.log(product);
-        const productDetails = productsData.find((p) => p.id === prodId);
-        const newProdObj = { ...productDetails, quantity: prodQty };
-        return newProdObj;
-      });
-      const newCartObj = { ...cart, products: cartDetails };
-      return newCartObj;
-    });
-    // console.log(multiCart);
-    console.log(newArray);
-    console.log(data);
-    setMultiCart(newArray);
-    localStorage.setItem("carts", JSON.stringify(newArray));
-  }
+  //   if (cartData && multiCart.length === 0) {
+  //     const newArray = cartData.map((cart) => {
+  //       console.log("New cart");
+  //       const cartProducts = cart.products;
+  //       const cartDetails = cartProducts.map((product) => {
+  //         const prodId = product.productId;
+  //         const prodQty = product.quantity;
+  //         console.log(product);
+  //         const productDetails = productsData.find((p) => p.id === prodId);
+  //         const newProdObj = { ...productDetails, quantity: prodQty };
+  //         return newProdObj;
+  //       });
+  //       const newCartObj = { ...cart, products: cartDetails };
+  //       return newCartObj;
+  //     });
+  //     // console.log(multiCart);
+  //     console.log(newArray);
 
+  //     const singleCart = newArray.shift();
+  //     console.log(singleCart);
+  //     const combinedCart = newArray.map((cart) => {
+  //       const extraCartProducts = cart.products;
+  //       extraCartProducts.map((product) => {
+  //         const foundProduct = singleCart.products.find((o, i) => {
+  //           if (o.id === product.id) {
+  //             console.log(singleCart.products[i]);
+  //             const newQuantity = o.quantity + product.quantity;
+  //             singleCart.products[i] = { ...o, quantity: newQuantity };
+  //             return true;
+  //           }
+  //         });
+  //         if (!foundProduct) {
+  //           singleCart.products.push(product);
+  //         }
+  //       });
+  //     });
+
+  //     console.log(singleCart);
+
+  //     localStorage.setItem("carts", JSON.stringify(singleCart));
+  //   const localCart = JSON.parse(localStorage.getItem("carts"));
+  //   console.log(localCart);
+  //   setMultiCart([localCart]);
+  //   //   console.log(multiCart);
   return (
     <div>
       <h2>Hello Welcome to the Cart</h2>
-      {multiCart.map((currentCart) => (
-        <div>
-          <h2>Cart: {currentCart.id}</h2>
-          {currentCart.products.map((product) => (
-            <div key={product.id} className="product-card">
-              <div className="product-card-container">
-                <h3> {product.title} </h3>
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="product-image-card"
-                />
-                <p>QTY: {product.quantity}</p>
-                <button
-                  onClick={() => navigate(`/products/${product.id}`)}
-                  className="product-button"
-                >
-                  <span>Product Details </span>
-                </button>
-              </div>
+      <div>
+        {multiCart.products.map((product) => (
+          <div key={product.id} className="product-card">
+            <div className="product-card-container">
+              <h3> {product.title} </h3>
+              <img
+                src={product.image}
+                alt={product.title}
+                className="product-image-card"
+              />
+              <p>QTY: {product.quantity}</p>
+              <button
+                onClick={() => navigate(`/products/${product.id}`)}
+                className="product-button"
+              >
+                <span>Product Details </span>
+              </button>
             </div>
-          ))}
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

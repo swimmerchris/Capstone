@@ -7,7 +7,6 @@ import Products from "./components/Products";
 import ProductDetail from "./components/ProductDetail";
 // // import Cart from "./components/Cart";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import Account from "./components/Account";
 import "./App.css";
 import Cart from "./components/Cart";
@@ -17,6 +16,7 @@ function App() {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [multiCart, setMultiCart] = useState([]);
 
   return (
     <section>
@@ -35,12 +35,11 @@ function App() {
               setUser={setUser}
               setUserId={setUserId}
               userId={userId}
+              user={user}
+              multiCart={multiCart}
+              setMultiCart={setMultiCart}
             />
           }
-        ></Route>
-        <Route
-          path="/register"
-          element={<Register token={token} setToken={setToken} />}
         ></Route>
         <Route
           path="/account"
@@ -62,6 +61,8 @@ function App() {
               user={user}
               setUserId={setUserId}
               userId={userId}
+              multiCart={multiCart}
+              setMultiCart={setMultiCart}
             />
           }
         ></Route>

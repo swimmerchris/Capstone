@@ -1,10 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 
-function NavBar({ token, setToken }) {
+function NavBar({ token, setToken, setUserId }) {
   const navigate = useNavigate();
 
   const logoutUser = () => {
     setToken(null);
+    setUserId(null);
+    localStorage.removeItem("carts");
     navigate("/");
   };
 
