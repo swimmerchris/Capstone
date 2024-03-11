@@ -8,7 +8,7 @@
 
 import { useState, useEffect } from "react";
 import {
-  useGetCartByUserQuery,
+  useGetCartByUserMutation,
   useGetAllCartsQuery,
   useGetAllProductsQuery,
 } from "../api/api";

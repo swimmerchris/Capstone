@@ -83,15 +83,18 @@ export const api = createApi({
             }),
             providesTags: ["Cart"],
         }),
-        getCartById: builder.query({
+        getCartById: builder.mutation({
             query: (id) => ({
-                url: `/carts/${id}`
+                url: `/carts/${id}`,
+                method: "GET",
+                body
             }),
             providesTags: ["Cart"],
         }),
-        getCartByUser: builder.query({
+        getCartByUser: builder.mutation({
             query: (userId) => ({
-                url: `/carts/user/${userId}`
+                url: `/carts/user/${userId}`,
+                method: "GET",
             }),
             // providesTags: ["Cart"],
         }),
@@ -133,8 +136,8 @@ export const {
     useSortProductsBySelectionQuery,
     useUpdateProductByIdMutation,
     useGetAllCartsQuery,
-    useGetCartByIdQuery,
-    useGetCartByUserQuery,
+    useGetCartByIdMutation,
+    useGetCartByUserMutation,
     useAddNewCartMutation,
     useUpdateCartMutation,
     useDeleteCartMutation
