@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../index.css";
+import { updateCart } from "../cartState/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function Login({
   token,
@@ -35,6 +37,7 @@ export default function Login({
     isLoading2,
   } = useGetAllProductsQuery();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -122,6 +125,7 @@ export default function Login({
           const localCart = JSON.parse(localStorage.getItem("carts"));
           console.log(localCart);
           setMultiCart([localCart]);
+          dispatch(updateCart(singleCart.products));
         }
       }
       cartInfo();

@@ -18,6 +18,16 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
+        updateCart(state, action) {
+            const payload = action.payload
+            console.log(payload)
+            state.cartProducts = payload;
+
+            state.cartTotal = state.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
+
+            updateStorage(state.cartProducts, state.cartTotal)
+        },
+
         addProduct(state, action) {
             const productItem = action.payload;
             const exsitingProduct = cartProducts.find((product) => productItem.id === product.id);
@@ -76,7 +86,7 @@ const cartSlice = createSlice({
     }
 })
 
-export const { addProduct, reduceProduct, deleteProduct } = cartSlice.actions
+export const { addProduct, reduceProduct, deleteProduct, updateCart } = cartSlice.actions
 
 export const productsCart = (state) => state.cart.cartProducts
 export const total = (state) => state.cart.cartTotal

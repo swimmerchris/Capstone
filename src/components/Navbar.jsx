@@ -1,12 +1,17 @@
+import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { updateCart } from "../cartState/cartSlice";
 
 function NavBar({ token, setToken, setUserId }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const logoutUser = () => {
     setToken(null);
     setUserId(null);
+    // dispatch(updateCart());
     localStorage.removeItem("carts");
+
     navigate("/");
   };
 
@@ -18,7 +23,7 @@ function NavBar({ token, setToken, setUserId }) {
         <NavLink to="/account">Account</NavLink>
         <NavLink to="/cart">Cart</NavLink>
         {/* Temp till I get cart working as expected */}
-        <NavLink to="/checkout">Checkout</NavLink>
+        {/* <NavLink to="/checkout">Checkout</NavLink> */}
         <a onClick={logoutUser}>Logout</a>
       </nav>
     );
@@ -32,7 +37,7 @@ function NavBar({ token, setToken, setUserId }) {
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/cart">Cart</NavLink>
       {/* Temp till I get cart working as expected */}
-      <NavLink to="/checkout">Checkout</NavLink>
+      {/* <NavLink to="/checkout">Checkout</NavLink> */}
     </nav>
   );
 }
