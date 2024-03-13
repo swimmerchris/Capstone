@@ -11,6 +11,7 @@ function NavBar({ token, setToken, setUserId }) {
     setUserId(null);
     // dispatch(updateCart());
     localStorage.removeItem("carts");
+    localStorage.removeItem("cartTotal");
 
     navigate("/");
   };

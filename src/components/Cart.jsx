@@ -17,7 +17,7 @@ import {
 } from "../cartState/cartSlice";
 import { useSelector } from "react-redux";
 
-export default function Cart({ multiCart }) {
+export default function Cart() {
   const currentCart = useSelector(productsCart);
   const currentTotal = useSelector(total);
   const navigate = useNavigate();

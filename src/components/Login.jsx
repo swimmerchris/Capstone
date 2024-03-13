@@ -82,6 +82,7 @@ export default function Login({
         if (error3) {
           return <h3>Something went wrong!</h3>;
         }
+        console.log(newData, multiCart);
         if (newData && multiCart.length === 0) {
           const newArray = newData.map((cart) => {
             console.log("New cart");
@@ -121,10 +122,6 @@ export default function Login({
 
           console.log(singleCart);
 
-          localStorage.setItem("carts", JSON.stringify(singleCart));
-          const localCart = JSON.parse(localStorage.getItem("carts"));
-          console.log(localCart);
-          setMultiCart([localCart]);
           dispatch(updateCart(singleCart.products));
         }
       }

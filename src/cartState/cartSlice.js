@@ -14,6 +14,8 @@ const initialState = {
     cartTotal,
 };
 
+// console.log(cartProducts);
+
 const cartSlice = createSlice({
     name: "cart",
     initialState,
@@ -22,7 +24,6 @@ const cartSlice = createSlice({
             const payload = action.payload
             console.log(payload)
             state.cartProducts = payload;
-
             state.cartTotal = state.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
 
             updateStorage(state.cartProducts, state.cartTotal)
@@ -30,7 +31,7 @@ const cartSlice = createSlice({
 
         addProduct(state, action) {
             const productItem = action.payload;
-            const exsitingProduct = cartProducts.find((product) => productItem.id === product.id);
+            const exsitingProduct = state.cartProducts.find((product) => productItem.id === product.id);
 
             if (!exsitingProduct) {
                 state.cartProducts.push({
