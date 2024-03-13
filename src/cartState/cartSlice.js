@@ -15,7 +15,7 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-    name: "cartUpdates",
+    name: "cart",
     initialState,
     reducers: {
         addProduct(state, action) {
@@ -77,5 +77,8 @@ const cartSlice = createSlice({
 })
 
 export const { addProduct, reduceProduct, deleteProduct } = cartSlice.actions
+
+export const productsCart = (state) => state.cart.cartProducts
+export const total = (state) => state.cart.cartTotal
 
 export default cartSlice.reducer;

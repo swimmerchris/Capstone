@@ -17,6 +17,8 @@ function NavBar({ token, setToken, setUserId }) {
         <NavLink to="/products">Products</NavLink>
         <NavLink to="/account">Account</NavLink>
         <NavLink to="/cart">Cart</NavLink>
+        {/* Temp till I get cart working as expected */}
+        <NavLink to="/checkout">Checkout</NavLink>
         <a onClick={logoutUser}>Logout</a>
       </nav>
     );
@@ -29,6 +31,8 @@ function NavBar({ token, setToken, setUserId }) {
       <NavLink to="/register">Register</NavLink>
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/cart">Cart</NavLink>
+      {/* Temp till I get cart working as expected */}
+      <NavLink to="/checkout">Checkout</NavLink>
     </nav>
   );
 }

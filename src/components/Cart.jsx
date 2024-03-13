@@ -5,84 +5,28 @@
     I need to pull products by id and push objects into array. 
     local storage should pull active date a userId and products (array of objects).  
 */
-
+import Checkout from "./Checkout";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
-  useGetCartByUserMutation,
-  useGetAllCartsQuery,
-  useGetAllProductsQuery,
-} from "../api/api";
+  addProduct,
+  reduceProduct,
+  deleteProduct,
+  productsCart,
+  total,
+} from "../cartState/cartSlice";
+import { useSelector } from "react-redux";
 
 export default function Cart({ multiCart }) {
-  //   const [multiCart, setMultiCart] = useState([]);
-  //   const { data: cartData = {}, error, isLoading } = useGetCartByUserQuery(userId);
-  //   const {
-  //     data: productsData = {},
-  //     error2,
-  //     isLoading2,
-  //   } = useGetAllProductsQuery();
-
-  //   if (user === null) {
-  //     return <p>Please Log in</p>;
-  //   }
-
-  //   if (isLoading) {
-  //     return <p>Loading....</p>;
-  //   }
-
-  //   if (error) {
-  //     return <h3>Something went wrong!</h3>;
-  //   }
-
-  //   if (cartData && multiCart.length === 0) {
-  //     const newArray = cartData.map((cart) => {
-  //       console.log("New cart");
-  //       const cartProducts = cart.products;
-  //       const cartDetails = cartProducts.map((product) => {
-  //         const prodId = product.productId;
-  //         const prodQty = product.quantity;
-  //         console.log(product);
-  //         const productDetails = productsData.find((p) => p.id === prodId);
-  //         const newProdObj = { ...productDetails, quantity: prodQty };
-  //         return newProdObj;
-  //       });
-  //       const newCartObj = { ...cart, products: cartDetails };
-  //       return newCartObj;
-  //     });
-  //     // console.log(multiCart);
-  //     console.log(newArray);
-
-  //     const singleCart = newArray.shift();
-  //     console.log(singleCart);
-  //     const combinedCart = newArray.map((cart) => {
-  //       const extraCartProducts = cart.products;
-  //       extraCartProducts.map((product) => {
-  //         const foundProduct = singleCart.products.find((o, i) => {
-  //           if (o.id === product.id) {
-  //             console.log(singleCart.products[i]);
-  //             const newQuantity = o.quantity + product.quantity;
-  //             singleCart.products[i] = { ...o, quantity: newQuantity };
-  //             return true;
-  //           }
-  //         });
-  //         if (!foundProduct) {
-  //           singleCart.products.push(product);
-  //         }
-  //       });
-  //     });
-
-  //     console.log(singleCart);
-
-  //     localStorage.setItem("carts", JSON.stringify(singleCart));
-  //   const localCart = JSON.parse(localStorage.getItem("carts"));
-  //   console.log(localCart);
-  //   setMultiCart([localCart]);
-  //   //   console.log(multiCart);
+  const currentCart = useSelector(productsCart);
+  const currentTotal = useSelector(total);
+  const navigate = useNavigate();
+  console.log(currentCart);
   return (
     <div>
       <h2>Hello Welcome to the Cart</h2>
       <div>
-        {multiCart.products.map((product) => (
+        {currentCart.map((product) => (
           <div key={product.id} className="product-card">
             <div className="product-card-container">
               <h3> {product.title} </h3>
@@ -102,6 +46,7 @@ export default function Cart({ multiCart }) {
           </div>
         ))}
       </div>
+      <button onClick={() => navigate("/checkout")}>Checkout</button>
     </div>
   );
 }

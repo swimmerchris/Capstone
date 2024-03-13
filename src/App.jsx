@@ -11,6 +11,7 @@ import Account from "./components/Account";
 import "./App.css";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
+import Checkout from "./components/Checkout";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -66,6 +67,7 @@ function App() {
             />
           }
         ></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
       </Routes>
     </section>
   );
