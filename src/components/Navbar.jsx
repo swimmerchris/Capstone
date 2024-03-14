@@ -9,7 +9,7 @@ function NavBar({ token, setToken, setUserId }) {
   const logoutUser = () => {
     setToken(null);
     setUserId(null);
-    // dispatch(updateCart());
+    dispatch(updateCart([]));
     localStorage.removeItem("carts");
     localStorage.removeItem("cartTotal");
 

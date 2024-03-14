@@ -28,6 +28,7 @@ export default function ProductDetail() {
           rating: data.rating,
         })
       );
+      toast.success("Added to Cart");
     }
   }
 

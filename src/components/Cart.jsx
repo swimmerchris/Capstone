@@ -15,38 +15,58 @@ import {
   productsCart,
   total,
 } from "../cartState/cartSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Cart() {
   const currentCart = useSelector(productsCart);
   const currentTotal = useSelector(total);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   console.log(currentCart);
   return (
     <div>
       <h2>Hello Welcome to the Cart</h2>
-      <div>
-        {currentCart.map((product) => (
-          <div key={product.id} className="product-card">
-            <div className="product-card-container">
-              <h3> {product.title} </h3>
-              <img
-                src={product.image}
-                alt={product.title}
-                className="product-image-card"
-              />
-              <p>QTY: {product.quantity}</p>
-              <button
-                onClick={() => navigate(`/products/${product.id}`)}
-                className="product-button"
-              >
-                <span>Product Details </span>
-              </button>
-            </div>
+      {currentCart ? (
+        <div>
+          <div>
+            {currentCart.map((product) => (
+              <div key={product.id} className="product-card">
+                <div className="product-card-container">
+                  <h3> {product.title} </h3>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="product-image-card"
+                  />
+                  <button onClick={() => dispatch(reduceProduct(product))}>
+                    -
+                  </button>
+                  <p>QTY: {product.quantity}</p>
+                  <button onClick={() => dispatch(addProduct(product))}>
+                    +
+                  </button>
+                  <button onClick={() => dispatch(deleteProduct(product))}>
+                    Delete
+                  </button>
+
+                  <button
+                    onClick={() => navigate(`/products/${product.id}`)}
+                    className="product-button"
+                  >
+                    <span>Product Details </span>
+                  </button>
+                  <span>Total: ${product.price * product.quantity}</span>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <button onClick={() => navigate("/checkout")}>Checkout</button>
+          <span>Current Total: ${currentTotal}</span>
+          <button onClick={() => navigate("/checkout")}>Checkout</button>
+        </div>
+      ) : (
+        <div>Your Cart is Empty, Please Log in and Add to Cart</div>
+      )}
     </div>
   );
 }

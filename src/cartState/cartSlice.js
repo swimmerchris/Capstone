@@ -56,11 +56,11 @@ const cartSlice = createSlice({
 
         },
         reduceProduct(state, action) {
-            const productId = action.payload;
-            const exsitingProduct = cartProducts.find((product) => productItem.id === product.id);
+            const productItem = action.payload;
+            const exsitingProduct = state.cartProducts.find((product) => productItem.id === product.id);
 
             if (exsitingProduct.quantity === 1) {
-                state.cartProducts = state.cartProducts.filter((currentProduct) => currentProduct.id != productId);
+                state.cartProducts = state.cartProducts.filter((currentProduct) => currentProduct.id != productItem.id);
             } else {
                 exsitingProduct.quantity--;
                 exsitingProduct.totalCost = exsitingProduct.totalPrice - exsitingProduct.price;
@@ -72,11 +72,11 @@ const cartSlice = createSlice({
 
         },
         deleteProduct(state, action) {
-            const productId = action.payload;
-            const exsitingProduct = cartProducts.find((product) => productItem.id === product.id);
+            const productItem = action.payload;
+            const exsitingProduct = state.cartProducts.find((product) => productItem.id === product.id);
 
             if (exsitingProduct) {
-                state.cartProducts = state.cartProducts.filter((currentProduct) => currentProduct.id != productId);
+                state.cartProducts = state.cartProducts.filter((currentProduct) => currentProduct.id != productItem.id);
             }
 
             state.cartTotal = state.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
