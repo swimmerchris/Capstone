@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetAllProductsQuery } from "../api/api";
+import { useGetAllCategoriesQuery, useGetAllProductsQuery } from "../api/api";
 import SearchBar from "./SearchBar";
+import SideBar from "./SideBar";
 
 export default function Products() {
   const { data = {}, error, isLoading } = useGetAllProductsQuery();
@@ -15,13 +16,14 @@ export default function Products() {
   if (error) {
     return <div>Error Occurred</div>;
   }
-
+  console.log(foundProduct);
   return (
     <div className="Product-page">
       <SearchBar
         foundProduct={foundProduct}
         setFoundProduct={setFoundProduct}
       />
+      <SideBar foundProduct={foundProduct} setFoundProduct={setFoundProduct} />
       <div className="Product-container">
         {foundProduct
           ? foundProduct.map((product) => (
