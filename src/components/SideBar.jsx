@@ -3,24 +3,44 @@ import React from "react";
 import "../index.css";
 import { useGetAllCategoriesQuery, useGetAllProductsQuery } from "../api/api";
 
-export default function SearchBar({ setFoundProduct }) {
+export default function SideBar({
+  setFoundProduct,
+  foundProduct,
+  setFilterProducts,
+  searchProducts,
+  data,
+}) {
   const [filterArray, setFilterArray] = useState([]);
-
-  const { data, error, isLoading } = useGetAllCategoriesQuery();
-  const { data: products, error2, isLoading2 } = useGetAllProductsQuery();
+  const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (filterArray.length === 0) {
-      setFoundProduct("");
-    } else {
+    if (filterArray.length === 0 && searchProducts.length === 0) {
+      console.log("here filter00");
+      setFoundProduct(data);
+      setFilterProducts([]);
+    } else if (filterArray.length === 0 && searchProducts.length > 0) {
+      console.log("filter 0 with search products", filterArray, searchProducts);
+      setFilterProducts([]);
+      setFoundProduct(searchProducts);
+    } else if (searchProducts.length > 0) {
+      console.log("here search >0 with filter");
       const foundProducts = filterArray.map((category) => {
-        return products.filter((currentProduct) => {
+        return searchProducts.filter((currentProduct) => {
           return currentProduct.category === category;
         });
       });
-
+      setFilterProducts(foundProducts.flat(1));
+      setFoundProduct(foundProducts.flat(1));
+    } else {
+      console.log("here nosearch fil");
+      const foundProducts = filterArray.map((category) => {
+        return data.filter((currentProduct) => {
+          return currentProduct.category === category;
+        });
+      });
+      setFilterProducts(foundProducts.flat(1));
       setFoundProduct(foundProducts.flat(1));
     }
   }
@@ -37,10 +57,10 @@ export default function SearchBar({ setFoundProduct }) {
     }
   }
 
-  if (isLoading || isLoading2) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
-  if (error || isLoading2) {
+  if (error) {
     return <div>Error Occurred</div>;
   }
 
@@ -49,8 +69,8 @@ export default function SearchBar({ setFoundProduct }) {
   return (
     <div id="side-bar">
       <form onSubmit={handleSubmit}>
-        {data &&
-          data.map((catergory, i) => {
+        {categories &&
+          categories.map((catergory, i) => {
             return (
               <div key={i}>
                 <label id={catergory}>

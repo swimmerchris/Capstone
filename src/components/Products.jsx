@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetAllCategoriesQuery, useGetAllProductsQuery } from "../api/api";
 import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
+import ListDetails from "./ListDetails";
 
 export default function Products() {
-  const { data = {}, error, isLoading } = useGetAllProductsQuery();
-  const [foundProduct, setFoundProduct] = useState(null);
-  const navigate = useNavigate();
+  const { data, error, isLoading } = useGetAllProductsQuery();
+  const [foundProduct, setFoundProduct] = useState([]);
+  const [filterProducts, setFilterProducts] = useState([]);
+  const [searchProducts, setSearchProducts] = useState([]);
+  //   const [foundProduct, setFoundProduct] = useState(null);
+  //   const [sort, setSort] = useState(true);
+  //   const [products, setProducts] = useState([]);
+  //   const navigate = useNavigate();
   if (isLoading) {
     return <div>is Loading...</div>;
   }
@@ -16,53 +22,49 @@ export default function Products() {
   if (error) {
     return <div>Error Occurred</div>;
   }
-  console.log(foundProduct);
+
+  function sortProductsChange(e) {
+    const sort = e.target.value;
+    let copyProducts = [...foundProduct];
+    console.log(copyProducts);
+
+    console.log(sort);
+    if (sort == 0) {
+      copyProducts.sort((a, b) => {
+        return a.price - b.price;
+      });
+    } else {
+      copyProducts.sort((a, b) => {
+        return b.price - a.price;
+      });
+    }
+    setFoundProduct(copyProducts);
+  }
+
   return (
     <div className="Product-page">
       <SearchBar
+        data={data}
         foundProduct={foundProduct}
         setFoundProduct={setFoundProduct}
+        setSearchProducts={setSearchProducts}
+        filterProducts={filterProducts}
       />
-      <SideBar foundProduct={foundProduct} setFoundProduct={setFoundProduct} />
+      <SideBar
+        data={data}
+        foundProduct={foundProduct?.length > 0 ? foundProduct : data}
+        setFoundProduct={setFoundProduct}
+        setFilterProducts={setFilterProducts}
+        searchProducts={searchProducts}
+      />
+      <select onChange={sortProductsChange}>
+        Price:
+        <option value={1}>Price High to Low</option>
+        <option value={0}>Price Low to High</option>
+        <option>Avg. Customer rating</option>
+      </select>
       <div className="Product-container">
-        {foundProduct
-          ? foundProduct.map((product) => (
-              <div key={product.id} className="Product-card">
-                <div className="Product-card-container">
-                  <h2> {product.title} </h2>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="Product-image-card"
-                  />
-                  <div>Price: {product.price}</div>
-                  <button
-                    onClick={() => navigate(`/products/${product.id}`)}
-                    className="Product-button"
-                  >
-                    <span>Product Details </span>
-                  </button>
-                </div>
-              </div>
-            ))
-          : data.map((product) => (
-              <div key={product.id} className="product-card">
-                <div className="product-card-container">
-                  <h2> {product.title} </h2>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="product-image-card"
-                  />
-                  <button
-                    onClick={() => navigate(`/products/${product.id}`)}
-                    className="product-button"
-                  >
-                    <span>Product Details </span>
-                  </button>
-                </div>
-              </div>
-            ))}
+        <ListDetails data={foundProduct?.length > 0 ? foundProduct : data} />
       </div>
     </div>
   );
