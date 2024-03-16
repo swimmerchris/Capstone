@@ -10,6 +10,7 @@ export default function Products() {
   const [foundProduct, setFoundProduct] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
   const [searchProducts, setSearchProducts] = useState([]);
+  const [searchName, setSearchName] = useState("");
   //   const [foundProduct, setFoundProduct] = useState(null);
   //   const [sort, setSort] = useState(true);
   //   const [products, setProducts] = useState([]);
@@ -49,6 +50,8 @@ export default function Products() {
         setFoundProduct={setFoundProduct}
         setSearchProducts={setSearchProducts}
         filterProducts={filterProducts}
+        searchName={searchName}
+        setSearchName={setSearchName}
       />
       <SideBar
         data={data}
@@ -56,9 +59,11 @@ export default function Products() {
         setFoundProduct={setFoundProduct}
         setFilterProducts={setFilterProducts}
         searchProducts={searchProducts}
+        searchName={searchName}
       />
       <select onChange={sortProductsChange}>
         Price:
+        <option>Sort By</option>
         <option value={1}>Price High to Low</option>
         <option value={0}>Price Low to High</option>
         <option>Avg. Customer rating</option>

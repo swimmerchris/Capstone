@@ -9,6 +9,7 @@ export default function SideBar({
   setFilterProducts,
   searchProducts,
   data,
+  searchName,
 }) {
   const [filterArray, setFilterArray] = useState([]);
   const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
@@ -23,7 +24,12 @@ export default function SideBar({
     } else if (filterArray.length === 0 && searchProducts.length > 0) {
       console.log("filter 0 with search products", filterArray, searchProducts);
       setFilterProducts([]);
-      setFoundProduct(searchProducts);
+      const products = data.filter((currentProduct) => {
+        return currentProduct.title
+          .toLowerCase()
+          .includes(searchName.toLowerCase());
+      });
+      setFoundProduct(products);
     } else if (searchProducts.length > 0) {
       console.log("here search >0 with filter");
       const foundProducts = filterArray.map((category) => {

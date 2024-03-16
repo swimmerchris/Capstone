@@ -9,8 +9,10 @@ export default function SearchBar({
   data,
   setSearchProducts,
   filterProducts,
+  searchName,
+  setSearchName,
 }) {
-  const [searchName, setSearchName] = useState("");
+  //   const [searchName, setSearchName] = useState("");
   //   const { data = {}, error, isLoading } = useGetAllProductsQuery();
 
   //   if (!foundProduct) {
