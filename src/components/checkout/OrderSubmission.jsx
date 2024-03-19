@@ -14,7 +14,7 @@ export default function OrderSubmission({
     <div>
       <div>
         <h2>Thank you {user.name.firstname} for ordering with eHub!</h2>
-        <p>Order Number: "random"</p>
+        <p>Order Number: {Math.floor(100000 + Math.random() * 900000)}</p>
       </div>
       {billingAddress ? (
         <div>
