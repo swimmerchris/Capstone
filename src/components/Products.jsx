@@ -11,10 +11,7 @@ export default function Products() {
   const [filterProducts, setFilterProducts] = useState([]);
   const [searchProducts, setSearchProducts] = useState([]);
   const [searchName, setSearchName] = useState("");
-  //   const [foundProduct, setFoundProduct] = useState(null);
-  //   const [sort, setSort] = useState(true);
-  //   const [products, setProducts] = useState([]);
-  //   const navigate = useNavigate();
+
   if (isLoading) {
     return <div>is Loading...</div>;
   }
@@ -34,9 +31,14 @@ export default function Products() {
       copyProducts.sort((a, b) => {
         return a.price - b.price;
       });
-    } else {
+    } else if (sort == 1) {
       copyProducts.sort((a, b) => {
         return b.price - a.price;
+      });
+    } else if (sort == "rating") {
+      copyProducts.sort((a, b) => {
+        console.log();
+        return b.rating.rate - a.rating.rate;
       });
     }
     setFoundProduct(copyProducts);
@@ -66,10 +68,14 @@ export default function Products() {
         <option>Sort By</option>
         <option value={1}>Price High to Low</option>
         <option value={0}>Price Low to High</option>
-        <option>Avg. Customer rating</option>
+        <option value="rating">Avg. Customer rating</option>
       </select>
       <div className="Product-container">
-        <ListDetails data={foundProduct?.length > 0 ? foundProduct : data} />
+        <ListDetails
+          data={
+            foundProduct?.length === 0 ? setFoundProduct(data) : foundProduct
+          }
+        />
       </div>
     </div>
   );

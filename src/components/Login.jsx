@@ -49,12 +49,14 @@ export default function Login({
       const result = await loginUser(body);
       setToken(result.data.token);
       console.log(result);
-      setUser(username);
+      //   setUser(username);
       if (result.data.token) {
         const userInfo = data.filter((currentUser) => {
           return currentUser.username === username;
         });
         console.log(userInfo[0].id);
+        setUser(userInfo[0]);
+        console.log(user);
         setUserId(userInfo[0].id);
         setSuccess("Login In Successful");
         setCartData(getCartByUser(userInfo[0].id));

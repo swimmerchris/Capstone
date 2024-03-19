@@ -49,6 +49,7 @@ function App() {
               token={token}
               setToken={setToken}
               user={user}
+              setUseruser={setUser}
               setUserId={setUserId}
               userId={userId}
             />
@@ -67,7 +68,7 @@ function App() {
             />
           }
         ></Route>
-        <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/checkout" element={<Checkout user={user} />}></Route>
       </Routes>
     </section>
   );

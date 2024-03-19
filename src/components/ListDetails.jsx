@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ListDetails = ({ data }) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       {data?.map((product) => (
@@ -13,6 +16,7 @@ const ListDetails = ({ data }) => {
               className="product-image-card"
             />
             <div>Price: {product.price}</div>
+            <div>Customer Rating: {product.rating.rate}</div>
             <button
               onClick={() => navigate(`/products/${product.id}`)}
               className="product-button"
