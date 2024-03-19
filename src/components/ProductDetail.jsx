@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct, productsCart } from "../cartState/cartSlice";
 import { toast } from "react-toastify";
 
-export default function ProductDetail() {
+export default function ProductDetail({ token }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const { data = {}, error, isLoading } = useGetProductsByIdQuery(id);
@@ -14,7 +14,7 @@ export default function ProductDetail() {
   const currentCart = useSelector(productsCart);
 
   function addToCart() {
-    if (!currentCart) {
+    if (!token) {
       toast.error("Please Log in to add to Cart");
     } else {
       dispatch(

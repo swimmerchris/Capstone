@@ -3,7 +3,7 @@ import Shipping from "./checkout/Shipping";
 import Billing from "./checkout/Billing";
 import OrderSubmission from "./checkout/OrderSubmission";
 
-export default function Checkout({ user }) {
+export default function Checkout({ user, token }) {
   const [shipping, setShippingInfo] = useState({});
   const [billingAddress, setBillingAddress] = useState(null);
   const [check, setCheck] = useState(false);

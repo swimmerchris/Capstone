@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetAllCategoriesQuery, useGetAllProductsQuery } from "../api/api";
+import { useGetAllProductsQuery } from "../api/api";
 import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
 import ListDetails from "./ListDetails";

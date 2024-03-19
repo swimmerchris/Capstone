@@ -14,18 +14,18 @@ export default function Account({ token, user, setUserId, setUser }) {
     return currentUser.username === user;
   });
 
-  if (userInfo[0]) {
-    return (
-      <section key={userInfo[0].id} className="user-details-container">
-        <div className="user-details-card">
-          <h2> User Account Info:</h2>
-          <div className="user-info">
-            <p>Frist Name: {userInfo[0].name.firstname} </p>
-            <p>Last Name: {userInfo[0].name.lastname} </p>
-            <p>Email Address: {userInfo[0].email}</p>
-          </div>
+  console.log(user);
+
+  return (
+    <section key={user.id} className="user-details-container">
+      <div className="user-details-card">
+        <h2> User Account Info:</h2>
+        <div className="user-info">
+          <p>Frist Name: {user.name.firstname} </p>
+          <p>Last Name: {user.name.lastname} </p>
+          <p>Email Address: {user.email}</p>
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
 }
