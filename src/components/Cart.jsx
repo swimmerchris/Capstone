@@ -16,8 +16,9 @@ import {
   total,
 } from "../cartState/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
-export default function Cart() {
+export default function Cart({ token }) {
   const currentCart = useSelector(productsCart);
   const currentTotal = useSelector(total);
   const navigate = useNavigate();
@@ -62,7 +63,17 @@ export default function Cart() {
             ))}
           </div>
           <span>Current Total: ${currentTotal}</span>
-          <button onClick={() => navigate("/checkout")}>Checkout</button>
+          <button
+            onClick={() => {
+              if (token) {
+                navigate("/checkout");
+              } else {
+                toast.error("Please log in to Checkout");
+              }
+            }}
+          >
+            Checkout
+          </button>
         </div>
       ) : (
         <div>Your Cart is Empty, Please Log in and Add to Cart</div>
