@@ -1,0 +1,32 @@
+.top_page_image {
+  background-image: url("../../assets/ai_image_673482_22510142.png");
+  background-color: aqua;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 700px;
+}
+
+.three_prod_container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 25px 0;
+}
+
+.home_product_info {
+  display: flex;
+  /* flex-direction: column; */
+  width: 33%;
+  font-size: medium;
+  align-items: center;
+  border: solid white 10px;
+}
+
+.product-image-card {
+  height: 300px;
+  width: 30%;
+}
+
+.home_product_featured {
+  background: rgb(124, 123, 123);
+  padding: 5rem;
+}

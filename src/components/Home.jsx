@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useGetAllProductsQuery } from "../api/api";
 import ai_image_673482_22510142 from "../assets/ai_image_673482_22510142.png";
+import "./css/Home.css";
 
 export default function () {
   const { data, isLoading, isError } = useGetAllProductsQuery();
@@ -15,15 +16,8 @@ export default function () {
   console.log(data);
   return (
     <div>
-      <div>
-        <h1>Hello this is home</h1>
-      </div>
       <div className="top_page_image">
-        <img
-          src={ai_image_673482_22510142}
-          alt="random clothing and electronics"
-        />
-        <div></div>
+        <h1>Welcome to eHub</h1>
         <button onClick={() => navigate("/products")}>Shop</button>
       </div>
       <div className="three_prod_container">
@@ -35,15 +29,15 @@ export default function () {
             className="product-image-card"
           />
         </div>
-        <div>
+        <div className="home_product_info">
           <h2> {data[5].title} </h2>
           <img
             src={data[5].image}
             alt={data[5].title}
             className="product-image-card"
           />
-        </div>{" "}
-        <div>
+        </div>
+        <div className="home_product_info">
           <h2> {data[16].title} </h2>
           <img
             src={data[16].image}
@@ -52,11 +46,11 @@ export default function () {
           />
         </div>
       </div>
-      <div>
+      <div className="home_product_featured">
         <img
           src={data[13].image}
           alt={data[13].title}
-          className="product-image-card"
+          className="featured-image-card"
         />
         <h2> {data[13].title} </h2>
         <p>{data[13].description}</p>
