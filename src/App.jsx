@@ -21,8 +21,8 @@ function App() {
 
   return (
     <section>
-      <NavBar token={token} setToken={setToken} setUserId={setUserId} />
       <ToastContainer position="top-center" />
+      <NavBar token={token} setToken={setToken} setUserId={setUserId} />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products/" element={<Products />}></Route>

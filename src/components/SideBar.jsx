@@ -73,7 +73,7 @@ export default function SideBar({
   //   console.log(filterArray);
 
   return (
-    <div id="side-bar">
+    <div className="side-bar">
       <form onSubmit={handleSubmit}>
         {categories &&
           categories.map((catergory, i) => {

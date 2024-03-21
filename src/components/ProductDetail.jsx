@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, productsCart } from "../cartState/cartSlice";
 import { toast } from "react-toastify";
+import SearchBar from "./SearchBar";
+import "./css/ProductDetail.css";
 
 export default function ProductDetail({ token }) {
   const { id } = useParams();
@@ -33,22 +35,25 @@ export default function ProductDetail({ token }) {
   }
 
   return (
-    <div key={data.id} className="data-details-container">
-      <div className="data-image-container">
-        <img src={data.image} alt={data.title} className="data-image" />
-      </div>
-      <div className="data-details-details">
-        <h2> {data.title} </h2>
-        <div>Price: {data.price}</div>
-        <p>{data.description}</p>
-        {/* <p>{data.rating}</p> */}
-        <button
-          onClick={() => navigate(`/products`)}
-          className="details-button"
-        >
-          Back to Products List
-        </button>
-        <button onClick={addToCart}>Add to Cart</button>
+    <div>
+      <SearchBar />
+      <div key={data.id} className="data-details-container">
+        <div className="data-image-container">
+          <img src={data.image} alt={data.title} className="data-image" />
+        </div>
+        <div className="data-details-details">
+          <h2> {data.title} </h2>
+          <p>Customer Rating: {data.rating.rate}</p>
+          <div>Price: ${data.price}</div>
+          <p>{data.description}</p>
+          <button
+            onClick={() => navigate(`/products`)}
+            className="details-button"
+          >
+            Back to Products List
+          </button>
+          <button onClick={addToCart}>Add to Cart</button>
+        </div>
       </div>
     </div>
   );

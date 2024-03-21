@@ -4,6 +4,7 @@ import { useGetAllProductsQuery } from "../api/api";
 import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
 import ListDetails from "./ListDetails";
+import "./css/Products.css";
 
 export default function Products() {
   const { data, error, isLoading } = useGetAllProductsQuery();
@@ -55,27 +56,29 @@ export default function Products() {
         searchName={searchName}
         setSearchName={setSearchName}
       />
-      <SideBar
-        data={data}
-        foundProduct={foundProduct?.length > 0 ? foundProduct : data}
-        setFoundProduct={setFoundProduct}
-        setFilterProducts={setFilterProducts}
-        searchProducts={searchProducts}
-        searchName={searchName}
-      />
-      <select onChange={sortProductsChange}>
-        Price:
-        <option>Sort By</option>
-        <option value={1}>Price High to Low</option>
-        <option value={0}>Price Low to High</option>
-        <option value="rating">Avg. Customer rating</option>
-      </select>
-      <div className="Product-container">
-        <ListDetails
-          data={
-            foundProduct?.length === 0 ? setFoundProduct(data) : foundProduct
-          }
+      <div className="filter_products_container">
+        <SideBar
+          data={data}
+          foundProduct={foundProduct?.length > 0 ? foundProduct : data}
+          setFoundProduct={setFoundProduct}
+          setFilterProducts={setFilterProducts}
+          searchProducts={searchProducts}
+          searchName={searchName}
         />
+        <div className="Product-container">
+          <select onChange={sortProductsChange}>
+            Price:
+            <option>Sort By</option>
+            <option value={1}>Price High to Low</option>
+            <option value={0}>Price Low to High</option>
+            <option value="rating">Avg. Customer rating</option>
+          </select>
+          <ListDetails
+            data={
+              foundProduct?.length === 0 ? setFoundProduct(data) : foundProduct
+            }
+          />
+        </div>
       </div>
     </div>
   );

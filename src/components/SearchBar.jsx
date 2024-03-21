@@ -52,11 +52,11 @@ export default function SearchBar({
     }
   }
   return (
-    <div id="search-bar">
+    <div className="search-bar">
       <form onSubmit={handleSubmit}>
         <label>
-          Search for Product:{" "}
           <input
+            placeholder="Search for Products"
             value={searchName}
             onChange={(e) => setSearchName(e.target.value)}
           />

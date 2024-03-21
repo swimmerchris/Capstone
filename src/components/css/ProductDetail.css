@@ -1,0 +1,7 @@
+.data-details-container {
+  display: flex;
+}
+
+.data-image {
+  max-width: 600px;
+}

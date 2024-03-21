@@ -5,25 +5,25 @@ const ListDetails = ({ data }) => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="container_products">
       {data?.map((product) => (
-        <div key={product.id} className="product-card">
-          <div className="product-card-container">
+        <div className="product-card-container">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="product-image-card"
+          />
+          <div className="middle_container">
             <h2> {product.title} </h2>
-            <img
-              src={product.image}
-              alt={product.title}
-              className="product-image-card"
-            />
-            <div>Price: {product.price}</div>
+            <div>Price: ${product.price}</div>
             <div>Customer Rating: {product.rating.rate}</div>
-            <button
-              onClick={() => navigate(`/products/${product.id}`)}
-              className="product-button"
-            >
-              <span>Product Details </span>
-            </button>
           </div>
+          <button
+            onClick={() => navigate(`/products/${product.id}`)}
+            className="product-button"
+          >
+            <span>Product Details </span>
+          </button>
         </div>
       ))}
     </div>

@@ -18,10 +18,15 @@ export default function () {
     <div>
       <div className="top_page_image">
         <h1>Welcome to eHub</h1>
-        <button onClick={() => navigate("/products")}>Shop</button>
+        <button onClick={() => navigate("/products")} className="shop_button">
+          Shop
+        </button>
       </div>
       <div className="three_prod_container">
-        <div className="home_product_info">
+        <div
+          className="home_product_info"
+          onClick={() => navigate(`/products/${data[3].id}`)}
+        >
           <h2> {data[3].title} </h2>
           <img
             src={data[3].image}
@@ -29,7 +34,10 @@ export default function () {
             className="product-image-card"
           />
         </div>
-        <div className="home_product_info">
+        <div
+          className="home_product_info"
+          onClick={() => navigate(`/products/${data[5].id}`)}
+        >
           <h2> {data[5].title} </h2>
           <img
             src={data[5].image}
@@ -37,7 +45,10 @@ export default function () {
             className="product-image-card"
           />
         </div>
-        <div className="home_product_info">
+        <div
+          className="home_product_info"
+          onClick={() => navigate(`/products/${data[16].id}`)}
+        >
           <h2> {data[16].title} </h2>
           <img
             src={data[16].image}
@@ -51,6 +62,7 @@ export default function () {
           src={data[13].image}
           alt={data[13].title}
           className="featured-image-card"
+          onClick={() => navigate(`/products/${data[13].id}`)}
         />
         <h2> {data[13].title} </h2>
         <p>{data[13].description}</p>
