@@ -19,23 +19,29 @@ function NavBar({ token, setToken, setUserId }) {
 
   if (token) {
     return (
-      <nav className="navbar">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/products">Products</NavLink>
-        <NavLink to="/account">Account</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
-        <a onClick={logoutUser}>Logout</a>
-      </nav>
+      <div className="nav-div">
+        <NavLink to="/">eHub</NavLink>
+        <nav className="navbar">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/account">Account</NavLink>
+          <a onClick={logoutUser}>Logout</a>
+          <NavLink to="/cart">Cart</NavLink>
+        </nav>
+      </div>
     );
   }
 
   return (
-    <nav className="navbar">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/products">Products</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/cart">Cart</NavLink>
-    </nav>
+    <div className="nav-div">
+      <NavLink to="/">eHub</NavLink>
+      <nav className="navbar">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/products">Products</NavLink>
+        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/cart">Cart</NavLink>
+      </nav>
+    </div>
   );
 }
 

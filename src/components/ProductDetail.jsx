@@ -13,7 +13,7 @@ export default function ProductDetail({ token }) {
   const navigate = useNavigate();
   const { data = {}, error, isLoading } = useGetProductsByIdQuery(id);
   const dispatch = useDispatch();
-  const currentCart = useSelector(productsCart);
+  console.log(data);
 
   function addToCart() {
     if (!token) {
@@ -42,17 +42,21 @@ export default function ProductDetail({ token }) {
           <img src={data.image} alt={data.title} className="data-image" />
         </div>
         <div className="data-details-details">
-          <h2> {data.title} </h2>
-          <p>Customer Rating: {data.rating.rate}</p>
-          <div>Price: ${data.price}</div>
-          <p>{data.description}</p>
           <button
             onClick={() => navigate(`/products`)}
             className="details-button"
           >
             Back to Products List
           </button>
-          <button onClick={addToCart}>Add to Cart</button>
+          <div className="details-header">
+            <h2> {data.title} </h2>
+            <p>Customer Rating: {data.rating?.rate}</p>
+          </div>
+          <p>{data.description}</p>
+          <div className="price_add_cart">
+            <div className="price">Price: ${data.price}</div>
+            <button onClick={addToCart}>Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>

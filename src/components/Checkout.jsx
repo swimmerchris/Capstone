@@ -2,6 +2,7 @@ import { useState } from "react";
 import Shipping from "./checkout/Shipping";
 import Billing from "./checkout/Billing";
 import OrderSubmission from "./checkout/OrderSubmission";
+import "./css/Checkout.css";
 
 export default function Checkout({ user, token }) {
   const [shipping, setShippingInfo] = useState({});

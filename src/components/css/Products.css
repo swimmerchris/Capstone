@@ -60,10 +60,31 @@
   margin: 10px 0;
 }
 
-.product-card-container button {
+.product-button {
   height: 60px;
   align-self: center;
   margin-right: 60px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.product-button:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 18px;
+  right: -20px;
+  transition: 0.5s;
+}
+.product-button:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+}
+.product-button:hover:after {
+  opacity: 1;
+  right: 10px;
 }
 
 .side-bar {

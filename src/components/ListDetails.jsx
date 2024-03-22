@@ -7,7 +7,7 @@ const ListDetails = ({ data }) => {
   return (
     <div className="container_products">
       {data?.map((product) => (
-        <div className="product-card-container">
+        <div className="product-card-container" key={product.id}>
           <img
             src={product.image}
             alt={product.title}

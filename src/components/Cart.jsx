@@ -17,6 +17,7 @@ import {
 } from "../cartState/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import "./css/Cart.css";
 
 export default function Cart({ token }) {
   const currentCart = useSelector(productsCart);
@@ -26,57 +27,70 @@ export default function Cart({ token }) {
 
   console.log(currentCart);
   return (
-    <div>
-      <h2>Hello Welcome to the Cart</h2>
+    <div className="cart-container">
+      <h2>Cart</h2>
       {currentCart ? (
-        <div>
-          <div>
+        <div className="sub-cart-container">
+          <div className="product-card">
             {currentCart.map((product) => (
-              <div key={product.id} className="product-card">
-                <div className="product-card-container">
+              <div key={product.id} className="product-card-container">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="product-image-card"
+                  onClick={() => navigate(`/products/${product.id}`)}
+                />
+                <div className="center">
                   <h3> {product.title} </h3>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="product-image-card"
-                  />
-                  <button onClick={() => dispatch(reduceProduct(product))}>
-                    -
-                  </button>
-                  <p>QTY: {product.quantity}</p>
-                  <button onClick={() => dispatch(addProduct(product))}>
-                    +
-                  </button>
-                  <button onClick={() => dispatch(deleteProduct(product))}>
-                    Delete
-                  </button>
-
-                  <button
-                    onClick={() => navigate(`/products/${product.id}`)}
-                    className="product-button"
-                  >
-                    <span>Product Details </span>
-                  </button>
-                  <span>Total: ${product.price * product.quantity}</span>
+                  <div className="quantity-card">
+                    <div className="count-container">
+                      <button
+                        onClick={() => dispatch(reduceProduct(product))}
+                        className="count-button"
+                      >
+                        -
+                      </button>
+                      <p id="quantity">{product.quantity}</p>
+                      <button
+                        onClick={() => dispatch(addProduct(product))}
+                        className="count-button"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <p
+                      onClick={() => dispatch(deleteProduct(product))}
+                      id="delete"
+                    >
+                      Delete
+                    </p>
+                  </div>
+                </div>
+                <div className="total">
+                  Total: <div>${product.price * product.quantity}</div>
                 </div>
               </div>
             ))}
           </div>
-          <span>Current Total: ${currentTotal}</span>
-          <button
-            onClick={() => {
-              if (token) {
-                navigate("/checkout");
-              } else {
-                toast.error("Please log in to Checkout");
-              }
-            }}
-          >
-            Checkout
-          </button>
+          <div className="checkout-total">
+            <div id="cart-total">Sub-Total: ${currentTotal}</div>
+            <button
+              onClick={() => {
+                if (token) {
+                  navigate("/checkout");
+                } else {
+                  toast.error("Please log in to Checkout");
+                }
+              }}
+            >
+              Proceed to Checkout
+            </button>
+          </div>
         </div>
       ) : (
-        <div>Your Cart is Empty, Please Log in and Add to Cart</div>
+        <div className="empty">
+          Your Cart is Empty, Please Log in and Add to Cart
+        </div>
       )}
     </div>
   );

@@ -1,11 +1,20 @@
 .navbar {
   display: flex;
   height: 5vh;
-  padding: 10px 0;
+  width: 40vw;
+  padding: 10px 50px;
   justify-content: space-evenly;
   align-items: center;
 }
 
 a a:hover {
   color: black;
+}
+
+.nav-div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 50px;
+  align-items: center;
+  font-size: larger;
 }
