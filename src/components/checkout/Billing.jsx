@@ -52,87 +52,95 @@ export default function Billing({
   }
   console.log(check);
   return (
-    <div>
-      <form onSubmit={billingSubmit}>
-        <label>
-          Card Number
+    <div className="checkout-container">
+      <form className="checkout-form" onSubmit={billingSubmit}>
+        <div className="checkout-form">
+          <h2>Billing Information</h2>
+          <label>Card Number</label>
           <input
+            placeholder="Card Number"
             value={cardNumber}
             onChange={(e) => setCardNumber(e.target.value)}
           />
-        </label>
-        <label>
-          Name on Card
+          <label>Name on Card</label>
           <input
+            placeholder="Name on Card"
             value={cardName}
             onChange={(e) => setCardName(e.target.value)}
           />
-        </label>
-        <label>
-          Expiration Date
-          <input value={expDate} onChange={(e) => setExpDate(e.target.value)} />
-        </label>
-        <label>
-          Security Code
+          <label>Expiration Date</label>
           <input
+            placeholder="Exp. Date"
+            value={expDate}
+            onChange={(e) => setExpDate(e.target.value)}
+          />
+          <label>Security Code</label>
+          <input
+            placeholder="Security Code"
             value={securityCode}
             onChange={(e) => setSecurityCode(e.target.value)}
           />
-        </label>
-        <label htmlFor="checkbox">
-          Same as delivery address
-          <input
-            type="checkbox"
-            value={check}
-            onChange={() => setCheck(!check)}
-          />
-        </label>
+          <label htmlFor="checkbox">
+            Same as delivery address
+            <input
+              id="billing-address-check"
+              type="checkbox"
+              value={check}
+              onChange={() => setCheck(!check)}
+            />
+          </label>
+        </div>
         {check === false ? (
-          <div>
-            <label>
-              First name
-              <input
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </label>
-            <label>
-              First name
-              <input
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </label>
-            <label>
-              Address:{" "}
-              <input
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </label>
-            <label>
-              Apartment, Suite, Etc.:{" "}
-              <input value={unit} onChange={(e) => setUnit(e.target.value)} />
-            </label>
-            <label>
-              City:{" "}
-              <input value={city} onChange={(e) => setCity(e.target.value)} />
-            </label>
-            <label>
-              State:{" "}
-              <input value={state} onChange={(e) => setState(e.target.value)} />
-            </label>
-            <label>
-              Zip Code:{" "}
-              <input
-                value={zipCode}
-                onChange={(e) => setZipCode(e.target.value)}
-              />
-            </label>
-            <label>
-              Phone:{" "}
-              <input value={phone} onChange={(e) => setPhone(e.target.value)} />
-            </label>
+          <div className="checkout-form">
+            <h2>Billing Address</h2>
+            <label>First name</label>
+            <input
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <label>Last Name</label>
+            <input
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <label>Address</label>
+            <input
+              placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            <label>Apartment, Suite, Etc. </label>
+            <input
+              placeholder="Apartment, Suite, Etc."
+              value={unit}
+              onChange={(e) => setUnit(e.target.value)}
+            />
+            <label>City</label>
+            <input
+              placeholder="City"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+            <label>State</label>
+            <input
+              placeholder="State"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            />
+            <label>Zip Code</label>
+            <input
+              placeholder="Zip Code"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+            />
+            <label>Phone</label>
+            <input
+              placeholder="Phone Number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
           </div>
         ) : (
           <div></div>

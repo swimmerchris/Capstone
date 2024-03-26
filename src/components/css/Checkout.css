@@ -1,0 +1,69 @@
+.checkout {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  background-color: #393e46;
+}
+
+.checkout-container {
+  margin: 100px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  max-width: 800px;
+}
+
+.checkout-form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 5px;
+  background-color: #393e46;
+}
+
+.checkout-form h2 {
+  font-size: xx-large;
+  margin-top: 20px;
+}
+
+.checkout-form label {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.checkout-form input {
+  width: 350px;
+  height: 18px;
+  font-size: 15px;
+}
+.checkout-form button {
+  margin: 20px 0;
+  align-self: center;
+}
+
+#billing-address-check {
+  max-width: 50px;
+}
+
+.billing-addresses {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 600px;
+  padding: 100px;
+  margin: 30px 50px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.order-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-container h3 {
+  color: #0092ca;
+}
+
+.details-containers {
+  display: flex;
+}

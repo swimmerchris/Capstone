@@ -1,0 +1,39 @@
+.login-body {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  /* margin: 100px; */
+  background-color: #393e46;
+}
+
+.login {
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  height: 400px;
+  width: 400px;
+  background-color: #393e46;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login h2 {
+  font-size: xx-large;
+}
+
+.login form label {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.login form input {
+  height: 18px;
+}

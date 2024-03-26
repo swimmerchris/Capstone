@@ -32,27 +32,36 @@ export default function Checkout({ user, token }) {
   }
 
   return (
-    <div>
-      {billingTrigger === null ? (
-        <Shipping
-          setBillingTrigger={setBillingTrigger}
-          setShippingInfo={setShippingInfo}
-          user={user}
-        />
-      ) : submissionTrigger === null ? (
-        <Billing
-          setBillingAddress={setBillingAddress}
-          user={user}
-          setBillingInfo={setBillingInfo}
-          setSubmissionTrigger={setSubmissionTrigger}
-        />
+    <div className="checkout">
+      {/* token */}
+      {true ? (
+        <div>
+          {billingTrigger === null ? (
+            <Shipping
+              setBillingTrigger={setBillingTrigger}
+              setShippingInfo={setShippingInfo}
+              user={user}
+            />
+          ) : submissionTrigger === null ? (
+            <Billing
+              setBillingAddress={setBillingAddress}
+              user={user}
+              setBillingInfo={setBillingInfo}
+              setSubmissionTrigger={setSubmissionTrigger}
+            />
+          ) : (
+            <OrderSubmission
+              user={user}
+              billingAddress={billingAddress}
+              shipping={shipping}
+              billing={billing}
+            />
+          )}
+        </div>
       ) : (
-        <OrderSubmission
-          user={user}
-          billingAddress={billingAddress}
-          shipping={shipping}
-          billing={billing}
-        />
+        <div className="need-login">
+          You are not logged in! Please Log in to Checkout!
+        </div>
       )}
     </div>
   );

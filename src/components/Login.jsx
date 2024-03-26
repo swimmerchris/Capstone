@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../index.css";
 import { updateCart } from "../cartState/cartSlice";
 import { useDispatch } from "react-redux";
+import "./css/Login.css";
 
 export default function Login({
   token,
@@ -167,7 +168,7 @@ export default function Login({
             />
             Show Password
           </label>
-          <button id="formButton">Submit</button>
+          <button id="formButton">Login</button>
         </form>
       </div>
     </div>
