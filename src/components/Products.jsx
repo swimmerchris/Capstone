@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useGetAllProductsQuery } from "../api/api";
 import SearchBar from "./SearchBar";
 import SideBar from "./SideBar";
@@ -25,9 +24,7 @@ export default function Products() {
   function sortProductsChange(e) {
     const sort = e.target.value;
     let copyProducts = [...foundProduct];
-    console.log(copyProducts);
 
-    console.log(sort);
     if (sort == 0) {
       copyProducts.sort((a, b) => {
         return a.price - b.price;
@@ -38,7 +35,6 @@ export default function Products() {
       });
     } else if (sort == "rating") {
       copyProducts.sort((a, b) => {
-        console.log();
         return b.rating.rate - a.rating.rate;
       });
     }

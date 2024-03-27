@@ -14,15 +14,12 @@ const initialState = {
     cartTotal,
 };
 
-// console.log(cartProducts);
-
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
         updateCart(state, action) {
             const payload = action.payload
-            console.log(payload)
             state.cartProducts = payload;
             state.cartTotal = state.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
 

@@ -1,11 +1,10 @@
 import { useState } from "react";
 import React from "react";
 import "../index.css";
-import { useGetAllCategoriesQuery, useGetAllProductsQuery } from "../api/api";
+import { useGetAllCategoriesQuery } from "../api/api";
 
 export default function SideBar({
   setFoundProduct,
-  foundProduct,
   setFilterProducts,
   searchProducts,
   data,
@@ -18,11 +17,9 @@ export default function SideBar({
     event.preventDefault();
 
     if (filterArray.length === 0 && searchProducts.length === 0) {
-      console.log("here filter00");
       setFoundProduct(data);
       setFilterProducts([]);
     } else if (filterArray.length === 0 && searchProducts.length > 0) {
-      console.log("filter 0 with search products", filterArray, searchProducts);
       setFilterProducts([]);
       const products = data.filter((currentProduct) => {
         return currentProduct.title
@@ -31,7 +28,6 @@ export default function SideBar({
       });
       setFoundProduct(products);
     } else if (searchProducts.length > 0) {
-      console.log("here search >0 with filter");
       const foundProducts = filterArray.map((category) => {
         return searchProducts.filter((currentProduct) => {
           return currentProduct.category === category;
@@ -40,7 +36,6 @@ export default function SideBar({
       setFilterProducts(foundProducts.flat(1));
       setFoundProduct(foundProducts.flat(1));
     } else {
-      console.log("here nosearch fil");
       const foundProducts = filterArray.map((category) => {
         return data.filter((currentProduct) => {
           return currentProduct.category === category;
@@ -70,11 +65,10 @@ export default function SideBar({
     return <div>Error Occurred</div>;
   }
 
-  //   console.log(filterArray);
-
   return (
     <div className="side-bar">
       <form onSubmit={handleSubmit}>
+        <h2>Filter</h2>
         {categories &&
           categories.map((catergory, i) => {
             return (
@@ -91,7 +85,7 @@ export default function SideBar({
               </div>
             );
           })}
-        <button>filter</button>
+        <button>Filter</button>
       </form>
     </div>
   );

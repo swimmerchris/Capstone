@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useGetAllProductsQuery } from "../api/api";
-import ai_image_673482_22510142 from "../assets/ai_image_673482_22510142.png";
 import "./css/Home.css";
 
 export default function () {
@@ -13,7 +12,7 @@ export default function () {
   if (isError) {
     return <h3>Something went wrong!</h3>;
   }
-  console.log(data);
+
   return (
     <div>
       <div className="top_page_image">

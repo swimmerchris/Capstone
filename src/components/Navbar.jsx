@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { updateCart } from "../cartState/cartSlice";
 import "./css/Navbar.css";
+import cart from "../assets/shopping-cart_760524.png";
 
 function NavBar({ token, setToken, setUserId }) {
   const navigate = useNavigate();
@@ -26,7 +27,9 @@ function NavBar({ token, setToken, setUserId }) {
           <NavLink to="/products">Products</NavLink>
           <NavLink to="/account">Account</NavLink>
           <a onClick={logoutUser}>Logout</a>
-          <NavLink to="/cart">Cart</NavLink>
+          <NavLink to="/cart">
+            <img src={cart} alt="cart Icon" />
+          </NavLink>
         </nav>
       </div>
     );
@@ -39,7 +42,9 @@ function NavBar({ token, setToken, setUserId }) {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/products">Products</NavLink>
         <NavLink to="/login">Login</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
+        <NavLink to="/cart">
+          <img src={cart} alt="cart Icon" />
+        </NavLink>
       </nav>
     </div>
   );

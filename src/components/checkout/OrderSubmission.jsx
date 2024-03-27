@@ -9,18 +9,13 @@ export default function OrderSubmission({
 }) {
   const currentCart = useSelector(productsCart);
   const currentTotal = useSelector(total);
-  console.log(shipping);
+  const userName =
+    user.name.firstname.charAt(0).toUpperCase() + user.name.firstname.slice(1);
   return (
     <div className="order-container">
       <div className="submission-container">
-        <h2>
-          Thank you{" "}
-          {() => {
-            user.name.firstname;
-          }}{" "}
-          for ordering with eHub!
-        </h2>
-        <p>Order Number: {Math.floor(100000 + Math.random() * 900000)}</p>
+        <h2>Thank you {userName} for ordering with eHub!</h2>
+        <h3>Order Number: {Math.floor(100000 + Math.random() * 900000)}</h3>
       </div>
       <div className="details-containers">
         <div className="billing-addresses">
@@ -32,11 +27,11 @@ export default function OrderSubmission({
                 <p>
                   Name: {billingAddress.firstName} {billingAddress.lastName}
                 </p>
-                <p>
+                <span>
                   Address: {billingAddress.address}, {"\n"}
-                  {billingAddress.city}, {billingAddress.state}
+                  {billingAddress.city}, {"\n"} {billingAddress.state} {"\n"}
                   {billingAddress.zipCode}
-                </p>
+                </span>
               </div>
               <div>
                 <h3> Shipping Address</h3>
@@ -59,7 +54,8 @@ export default function OrderSubmission({
                 </p>
                 <div>
                   Address: {shipping.address} {"\n"}
-                  {shipping.city}, {shipping.state} {shipping.zipCode}
+                  {shipping.city}, {"\n"} {shipping.state} {"\n"}
+                  {shipping.zipCode}
                 </div>
               </div>
               <div>
@@ -68,8 +64,9 @@ export default function OrderSubmission({
                   Name: {shipping.firstName} {shipping.lastName}
                 </p>
                 <p>
-                  Address: {shipping.address}
-                  {shipping.city}, {shipping.state} {shipping.zipCode}
+                  Address: {shipping.address} {"\n"}
+                  {shipping.city}, {"\n"} {shipping.state} {"\n"}
+                  {shipping.zipCode}
                 </p>
               </div>
             </div>

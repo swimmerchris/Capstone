@@ -4,4 +4,14 @@
 
 footer {
   height: 10vh;
+  padding: 20px;
+  color: #eeeeee;
+}
+
+footer a {
+  font-size: small;
+}
+
+#app {
+  height: 100%;
 }

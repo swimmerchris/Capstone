@@ -1,11 +1,9 @@
-import "../index.css";
 import { useParams } from "react-router-dom";
 import { useGetProductsByIdQuery } from "../api/api";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct, productsCart } from "../cartState/cartSlice";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../cartState/cartSlice";
 import { toast } from "react-toastify";
-import SearchBar from "./SearchBar";
 import "./css/ProductDetail.css";
 
 export default function ProductDetail({ token }) {
@@ -13,7 +11,6 @@ export default function ProductDetail({ token }) {
   const navigate = useNavigate();
   const { data = {}, error, isLoading } = useGetProductsByIdQuery(id);
   const dispatch = useDispatch();
-  console.log(data);
 
   function addToCart() {
     if (!token) {
@@ -36,7 +33,7 @@ export default function ProductDetail({ token }) {
 
   return (
     <div>
-      <SearchBar />
+      <div className="spacing"></div>
       <div key={data.id} className="data-details-container">
         <div className="data-image-container">
           <img src={data.image} alt={data.title} className="data-image" />

@@ -20,7 +20,7 @@ function App() {
   const [multiCart, setMultiCart] = useState([]);
 
   return (
-    <section>
+    <div id="app">
       <ToastContainer position="top-center" />
       <NavBar token={token} setToken={setToken} setUserId={setUserId} />
       <Routes>
@@ -76,8 +76,16 @@ function App() {
           element={<Checkout user={user} token={token} />}
         ></Route>
       </Routes>
-      <footer>Welcome to the footer</footer>
-    </section>
+      <footer>
+        <div>eHub a Website Where Your Dreams Come True!!!!</div>
+        <a href="https://www.freepik.com/icon/user_149071#fromView=keyword&page=1&position=9&uuid=f914c7ca-ab99-48f3-ada2-3cd5ed86a68a">
+          Icon by Smashicons
+        </a>
+        <a href="https://www.freepik.com/icon/trolley_12894030#fromView=search&page=1&position=15&uuid=c8bc4c6a-9d56-436e-8f1b-571787102f95">
+          Icon by Mihimihi
+        </a>
+      </footer>
+    </div>
   );
 }
 

@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export default function Billing({
   setBillingAddress,
-  user,
   setBillingInfo,
   setSubmissionTrigger,
 }) {
@@ -43,14 +42,8 @@ export default function Billing({
     }
     setBillingInfo(billingObj);
     setSubmissionTrigger(true);
-    /* please log in to checkout (maybe check if user)
-        Shipping Page
-        Payment Page
-        Order Submit Page
-
-    */
   }
-  console.log(check);
+
   return (
     <div className="checkout-container">
       <form className="checkout-form" onSubmit={billingSubmit}>

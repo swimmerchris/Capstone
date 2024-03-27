@@ -43,12 +43,6 @@ export default function Shipping({ setShippingInfo, user, setBillingTrigger }) {
 
     setShippingInfo(shippingObj);
     setBillingTrigger(true);
-    /* please log in to checkout (maybe check if user)
-        Shipping Page
-        Payment Page
-        Order Submit Page
-
-    */
   }
 
   return (

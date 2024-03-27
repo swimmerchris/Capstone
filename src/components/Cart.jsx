@@ -1,13 +1,4 @@
-/* pull in a cart for a logged in user 
-    if no cart exsist and local storage for cart is empty I will render a cart empty
-    if cart exsist I will pull and populate data into local storage.
-    if local storage has cart items I will loop through items and populate them. 
-    I need to pull products by id and push objects into array. 
-    local storage should pull active date a userId and products (array of objects).  
-*/
-import Checkout from "./Checkout";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import {
   addProduct,
   reduceProduct,
@@ -25,7 +16,6 @@ export default function Cart({ token }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(currentCart);
   return (
     <div className="cart-container">
       <h2>Cart</h2>
@@ -89,7 +79,7 @@ export default function Cart({ token }) {
         </div>
       ) : (
         <div className="empty">
-          Your Cart is Empty, Please Log in and Add to Cart
+          <h3>Your Cart is Empty, Please Log in and Add to Cart</h3>
         </div>
       )}
     </div>

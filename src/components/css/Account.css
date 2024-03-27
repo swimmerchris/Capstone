@@ -1,0 +1,33 @@
+.user-details-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  background-color: #393e46;
+}
+
+.user-details-card {
+  margin: 100px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  width: 800px;
+  min-height: 200px;
+  padding: 30px;
+}
+
+.user-details-card img {
+  width: 100px;
+}
+
+h2 {
+  color: #0092ca;
+}
+
+.need-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 100px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  width: 800px;
+  min-height: 400px;
+  padding: 30px;
+}

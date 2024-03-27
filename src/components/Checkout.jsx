@@ -7,34 +7,13 @@ import "./css/Checkout.css";
 export default function Checkout({ user, token }) {
   const [shipping, setShippingInfo] = useState({});
   const [billingAddress, setBillingAddress] = useState(null);
-  const [check, setCheck] = useState(false);
   const [billing, setBillingInfo] = useState(null);
   const [billingTrigger, setBillingTrigger] = useState(null);
   const [submissionTrigger, setSubmissionTrigger] = useState(null);
 
-  async function shippingSubmit(event) {
-    event.preventDefault();
-
-    const shippingObj = {
-      firstName,
-      lastName,
-      address,
-      unit,
-      city,
-      state,
-      zipCode,
-      phone,
-    };
-
-    setShippingInfo(shippingObj);
-    setBillingInfo(true);
-    console.log(shipping);
-  }
-
   return (
     <div className="checkout">
-      {/* token */}
-      {true ? (
+      {token ? (
         <div>
           {billingTrigger === null ? (
             <Shipping
@@ -60,7 +39,7 @@ export default function Checkout({ user, token }) {
         </div>
       ) : (
         <div className="need-login">
-          You are not logged in! Please Log in to Checkout!
+          <h2>You are not logged in, Please Log in to Checkout!</h2>
         </div>
       )}
     </div>
