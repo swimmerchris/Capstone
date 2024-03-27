@@ -1,3 +1,4 @@
+// This Component handles the cart, updating, deleting and checking out.
 import { useNavigate } from "react-router-dom";
 import {
   addProduct,
@@ -11,6 +12,7 @@ import { toast } from "react-toastify";
 import "./css/Cart.css";
 
 export default function Cart({ token }) {
+  //   grabbing the cart info and cart total from global state
   const currentCart = useSelector(productsCart);
   const currentTotal = useSelector(total);
   const navigate = useNavigate();

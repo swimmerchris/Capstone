@@ -1,3 +1,5 @@
+// This Component Handles the shipping information form.
+
 import { useState } from "react";
 
 export default function Shipping({ setShippingInfo, user, setBillingTrigger }) {
@@ -27,6 +29,7 @@ export default function Shipping({ setShippingInfo, user, setBillingTrigger }) {
   );
   const [phone, setPhone] = useState(() => (user ? user.phone : ""));
 
+  // function to handle the form submission for shipping information.
   async function shippingSubmit(event) {
     event.preventDefault();
 

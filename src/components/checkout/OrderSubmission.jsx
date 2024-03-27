@@ -1,3 +1,5 @@
+// This component is used to handle the order submission page.
+
 import { productsCart, total } from "../../cartState/cartSlice";
 import { useSelector } from "react-redux";
 
@@ -7,10 +9,13 @@ export default function OrderSubmission({
   shipping,
   billing,
 }) {
+  // getting cart data from redux state.
   const currentCart = useSelector(productsCart);
   const currentTotal = useSelector(total);
+  // grabbing the users name and capitalizing it.
   const userName =
     user.name.firstname.charAt(0).toUpperCase() + user.name.firstname.slice(1);
+
   return (
     <div className="order-container">
       <div className="submission-container">

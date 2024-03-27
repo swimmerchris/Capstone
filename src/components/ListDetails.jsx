@@ -1,3 +1,4 @@
+// This Component handles the product details. It is used the by the Products Component.
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

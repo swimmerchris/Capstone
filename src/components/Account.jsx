@@ -1,8 +1,11 @@
+// This Compoent is used to manage the account informaiton
+
 import React from "react";
 import "./css/Account.css";
 import user_149071 from "../assets/user_149071.png";
 
 export default function Account({ user }) {
+  //   The below handles capitalizing the first and last names if they aren't already capitalized
   const firstName =
     user?.name.firstname.charAt(0).toUpperCase() +
     user?.name.firstname.slice(1);

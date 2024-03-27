@@ -1,3 +1,4 @@
+// This component handles the login to the site. it also sets the initial state of the cart.
 import { useState, useEffect } from "react";
 import {
   useLoginMutation,
@@ -33,6 +34,7 @@ export default function Login({
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  //   handles the login form and storing of the initial cart data.
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -59,8 +61,11 @@ export default function Login({
     }
   }
 
+  //   This will run if the login is successful.
   useEffect(() => {
     if (success) {
+      // this function pulls the cart data from the api and
+      // then updates each cart item with it's associated data
       async function cartInfo() {
         const { data: newData, isLoading3, error3 } = await cartData;
 
@@ -93,6 +98,8 @@ export default function Login({
 
           const singleCart = newArray.shift();
 
+          /*   This is used to combine multipe cart objs for 1 user 
+         into 1 removing duplicates and adding to the quantity */
           const combinedCart = newArray.map((cart) => {
             const extraCartProducts = cart.products;
             extraCartProducts.map((product) => {
@@ -108,7 +115,7 @@ export default function Login({
               }
             });
           });
-
+          //   update the global state
           dispatch(updateCart(singleCart.products));
         }
       }

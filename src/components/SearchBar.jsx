@@ -1,3 +1,4 @@
+// This Component handles the search functionality
 import React from "react";
 import "../index.css";
 
@@ -10,6 +11,7 @@ export default function SearchBar({
   searchName,
   setSearchName,
 }) {
+  //This function handles the submission for the search bar and filters products based on search
   function handleSubmit(event) {
     event.preventDefault();
 

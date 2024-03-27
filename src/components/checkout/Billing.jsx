@@ -1,3 +1,5 @@
+//This Component is to handle the billing information during checkout.
+
 import { useState } from "react";
 
 export default function Billing({
@@ -19,8 +21,10 @@ export default function Billing({
   const [zipCode, setZipCode] = useState();
   const [phone, setPhone] = useState();
 
+  // function to handle the form submit for billing info form.
   async function billingSubmit(event) {
     event.preventDefault();
+    // billing address obj to be used if the address is different
     const billingAddressObj = {
       firstName,
       lastName,
@@ -31,6 +35,7 @@ export default function Billing({
       zipCode,
       phone,
     };
+    // billing obj to hand the card information.
     const billingObj = {
       cardName,
       cardNumber,

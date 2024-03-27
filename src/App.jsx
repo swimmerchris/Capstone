@@ -5,7 +5,6 @@ import { ToastContainer } from "react-toastify";
 import NavBar from "./components/Navbar";
 import Products from "./components/Products";
 import ProductDetail from "./components/ProductDetail";
-// // import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Account from "./components/Account";
 import "./App.css";

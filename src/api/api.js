@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+// API slice that handles interactions with the fakestoreapi
 export const api = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({

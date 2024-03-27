@@ -1,3 +1,4 @@
+// This component handles the filtering for the products page.
 import { useState } from "react";
 import React from "react";
 import "../index.css";
@@ -13,6 +14,7 @@ export default function SideBar({
   const [filterArray, setFilterArray] = useState([]);
   const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
 
+  // This function handles the filtering of products based on the selection critera.
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -45,7 +47,7 @@ export default function SideBar({
       setFoundProduct(foundProducts.flat(1));
     }
   }
-
+  // This function handles the array of filter items that the above function uses.
   function handleChange(event) {
     const found = filterArray.find((cat) => cat === event.target.id);
     if (found) {

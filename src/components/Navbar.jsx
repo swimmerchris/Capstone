@@ -1,3 +1,4 @@
+// This component handles the navigation bar for the site.
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { updateCart } from "../cartState/cartSlice";
@@ -17,7 +18,8 @@ function NavBar({ token, setToken, setUserId }) {
 
     navigate("/");
   };
-
+  //   This checks if a token exists, user is logged in, and returns the logged in navbar
+  //   If not it returns the standard navbar
   if (token) {
     return (
       <div className="nav-div">

@@ -1,3 +1,4 @@
+// This Component handles the details for the products
 import { useParams } from "react-router-dom";
 import { useGetProductsByIdQuery } from "../api/api";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +12,7 @@ export default function ProductDetail({ token }) {
   const navigate = useNavigate();
   const { data = {}, error, isLoading } = useGetProductsByIdQuery(id);
   const dispatch = useDispatch();
-
+  // handles adding an item to the cart
   function addToCart() {
     if (!token) {
       toast.error("Please Log in to add to Cart");

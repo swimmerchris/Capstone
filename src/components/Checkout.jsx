@@ -1,3 +1,6 @@
+/* This Component handles the checkout functionality. It leverages the billing, shipping and order submission components.
+This state of the Shipp info, billing info and billing address are managed from this and passed to the other components
+ */
 import { useState } from "react";
 import Shipping from "./checkout/Shipping";
 import Billing from "./checkout/Billing";

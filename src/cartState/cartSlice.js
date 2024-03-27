@@ -1,9 +1,15 @@
+/* This Reducer handles the global cart state, it also handles 
+The local storage by adding the cart information to a local storage object.
+This also provides the mechanism for handling the cart total. 
+*/
 import { createSlice } from "@reduxjs/toolkit";
 
+// Below items get carts and cartTotal from local storage. 
 const productCarts = localStorage.getItem("carts") !== null ? JSON.parse(localStorage.getItem("carts")) : [];
 
 const cartTotal = localStorage.getItem("cartTotal") !== null ? JSON.parse(localStorage.getItem("cartTotal")) : 0;
 
+// function to handle the updating of local storage items as they change. 
 function updateStorage(cartProducts, cartTotal) {
     localStorage.setItem("carts", JSON.stringify(cartProducts));
     localStorage.setItem("cartTotal", JSON.stringify(cartTotal))
@@ -14,6 +20,7 @@ const initialState = {
     cartTotal,
 };
 
+// Slice to manage cart state.
 const cartSlice = createSlice({
     name: "cart",
     initialState,

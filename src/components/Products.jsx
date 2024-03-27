@@ -1,3 +1,7 @@
+/* This component handles the display of the products 
+It also handles searching, filtering and sorting using both the items in this component
+and the associated SearchBar and Sidebar components. 
+*/
 import { useState } from "react";
 import { useGetAllProductsQuery } from "../api/api";
 import SearchBar from "./SearchBar";
@@ -21,6 +25,7 @@ export default function Products() {
     return <div>Error Occurred</div>;
   }
 
+  //   This function handles the sorting of the procuts based on criteria selected by user.
   function sortProductsChange(e) {
     const sort = e.target.value;
     let copyProducts = [...foundProduct];

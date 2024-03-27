@@ -1,3 +1,4 @@
+// This component is the home screen to welcome people to the site and provide a few featured product
 import { useNavigate } from "react-router-dom";
 import { useGetAllProductsQuery } from "../api/api";
 import "./css/Home.css";
