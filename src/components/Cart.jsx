@@ -71,7 +71,7 @@ export default function Cart({ token }) {
             ))}
           </div>
           <div className="checkout-total">
-            <div id="cart-total">Sub-Total: ${currentTotal}</div>
+            <div id="cart-total">Sub-Total: ${currentTotal.toFixed(2)}</div>
             <button
               onClick={() => {
                 if (token) {
