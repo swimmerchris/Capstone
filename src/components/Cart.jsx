@@ -14,9 +14,14 @@ import "./css/Cart.css";
 export default function Cart({ token }) {
   //   grabbing the cart info and cart total from global state
   const currentCart = useSelector(productsCart);
-  const currentTotal = useSelector(total);
+  const currentTotal = parseFloat(useSelector(total));
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  function totalPerProduct(price, quantity) {
+    const total = price * quantity;
+    return total.toFixed(2);
+  }
 
   return (
     <div className="cart-container">
@@ -59,7 +64,8 @@ export default function Cart({ token }) {
                   </div>
                 </div>
                 <div className="total">
-                  Total: <div>${product.price * product.quantity}</div>
+                  Total:{" "}
+                  <div>${totalPerProduct(product.price, product.quantity)}</div>
                 </div>
               </div>
             ))}
