@@ -16,6 +16,11 @@ export default function OrderSubmission({
   const userName =
     user.name.firstname.charAt(0).toUpperCase() + user.name.firstname.slice(1);
 
+  function totalPerProduct(price, quantity) {
+    const total = price * quantity;
+    return total.toFixed(2);
+  }
+
   return (
     <div className="order-container">
       <div className="submission-container">
@@ -85,7 +90,7 @@ export default function OrderSubmission({
             <p>Name on Card: {billing.cardName}</p>
           </div>
           <div className="checkout-total">
-            <span id="cart-total">Order Total: ${currentTotal}</span>
+            <span id="cart-total">Order Total: ${currentTotal.toFixed(2)}</span>
           </div>
         </div>
         {currentCart ? (
@@ -104,7 +109,10 @@ export default function OrderSubmission({
                   </div>
 
                   <span className="total">
-                    Total: <div>${product.price * product.quantity} </div>
+                    Total:{" "}
+                    <div>
+                      ${totalPerProduct(product.price, product.quantity)}{" "}
+                    </div>
                   </span>
                 </div>
               ))}
